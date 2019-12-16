@@ -22,6 +22,6 @@ class Follow:
             for i in v:
                 s += i + " "
 
-            s += "\n"
+            s += "}\n"
 
         return s
