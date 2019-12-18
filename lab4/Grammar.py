@@ -4,6 +4,7 @@ class Grammar:
         self.terminals = []
         self.productions = {}
         self.startSymbol = ""
+        self.prod_idx = 0
 
     def set_start_symbol(self, s):
         self.startSymbol = s
@@ -75,6 +76,8 @@ class Grammar:
     def print_production_of_nonterminal(self, nonterm):
         s = nonterm + " -> "
         for i in self.productions[nonterm]:
+            self.prod_idx += 1
+            s += "(" + str(self.prod_idx) + ") "
             s = s + i + " | "
         s = s[:-2]
         s += "\n"
@@ -82,6 +85,7 @@ class Grammar:
 
     def print_productions(self):
         s = "P:\n"
+        self.prod_idx = 0
         for n in self.productions.keys():
             s += self.print_production_of_nonterminal(n)
         s += "\n"
