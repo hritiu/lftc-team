@@ -1,0 +1,33 @@
+program, stmt, R, V, M, iostmt, whilestmt, ifstmt, T, condition, U, logic, rel, declaration, arrayint, integers, Y, type, assignment, expression, A, B, C, D, X, declist, cmpdstmt
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36
+program
+program -> 25 declist cmpdstmt 26
+declist -> epsilon | R
+R -> declaration 14 V
+V -> epsilon | R
+declaration -> type 33 0
+type -> 4 | 5 | arrayint
+arrayint -> 21 integers 22
+integers -> epsilon | 1 Y
+Y -> epsilon | 36 1
+cmpdstmt -> stmt X
+X -> epsilon | cmpdstmt
+stmt -> assignment | iostmt | ifstmt | whilestmt
+assignment -> 0 32 expression 14
+expression -> B A
+A -> 15 B A | 16 B A
+A -> epsilon
+B -> D C
+C -> 17 D C | 18 D C
+C -> epsilon
+D -> 21 expression 22
+D -> 0 | 1
+iostmt -> 9 0 14 | 10 21 M 22 14
+M -> 0 | 1
+ifstmt -> 6 condition 25 cmpdstmt 26 T
+T -> epsilon | 7 25 cmpdstmt 26
+condition -> expression rel expression U
+U -> epsilon | logic condition
+logic -> 12 | 13
+rel -> 27 | 28 | 29 | 30 | 31
+whilestmt -> 8 condition 25 cmpdstmt 26

@@ -88,3 +88,54 @@ def read_grammar_from_file(grammar):
     return
 
 
+def valid_prod(ls, grammar):
+    for e in ls:
+        if e == "epsilon":
+            return True
+
+        if e not in grammar.get_nonterminals() and e not in grammar.get_terminals():
+            return False
+
+    return True
+
+
+def read_grammar_from_file_2(grammar):
+    with open("mygr.txt") as file:
+        line = file.readline()[:-1]
+        nonterminals = line.split(",")
+
+        for i in nonterminals:
+            grammar.add_nonterminal(i.strip())
+
+        line = file.readline()[:-1]
+        terminals = line.split(",")
+        for t in terminals:
+            grammar.add_terminal(t)
+
+        start_sym_line = file.readline()[:-1]
+        if grammar.valid_nonterm_2(start_sym_line):
+            grammar.set_start_symbol(start_sym_line)
+        else:
+            print("Invalid start symbol")
+            return
+
+        line = file.readline()[:-1]
+        while line:
+            p = line.split("->")
+            p[0] = p[0].strip()
+            if grammar.valid_nonterminal(p[0]):
+                x = p[1].split("|")
+                for idx in range(len(x)):
+                    x[idx] = x[idx].strip()
+                    y = x[idx].split(" ")
+                    if not valid_prod(y, grammar):
+                        print("Wrong production rhs")
+                        return
+                    grammar.add_to_productions(p[0], y)
+            else:
+                print("Wrong production lhs")
+                return
+            line = file.readline()[:-1]
+    return
+
+

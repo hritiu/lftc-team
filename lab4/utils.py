@@ -27,3 +27,22 @@ def concat(production, first):
 
     return x
 
+
+def concat2(prod_as_list, first):
+    if prod_as_list == ["epsilon"]:
+        return prod_as_list
+
+    i = 1
+    x = first.get_values_of_symbol(prod_as_list[0])
+    if x == []:
+        return []
+
+    while i < len(prod_as_list):
+        f = first.get_values_of_symbol(prod_as_list[i])
+        if f == []:
+            return []
+        y = concat_len_1(x, f)
+        i += 1
+        x = y
+
+    return x

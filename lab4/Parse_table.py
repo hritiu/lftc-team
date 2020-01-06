@@ -39,6 +39,7 @@ class ParseTable:
             for x in v:
                 term_list.append(x[0])
             if len(term_list) != len(set(term_list)):
+                print("Error in table at line: ", k, " - values are: ", term_list)
                 return False
 
         return True

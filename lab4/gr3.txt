@@ -1,0 +1,11 @@
+Ss,Aa,Bb,Cc,Dd
++1,*2,(3,)4,a5
+Ss
+Ss -> Bb Aa
+Aa -> +1 Bb Aa
+Aa -> epsilon
+Bb -> Dd Cc
+Cc -> *2 Dd Cc
+Cc -> epsilon
+Dd -> (3 Ss )4
+Dd -> a5

@@ -52,6 +52,12 @@ class Grammar:
             return True
         return False
 
+    def valid_nonterm_2(self, x):
+        for i in self.nonterminals:
+            if i == x:
+                return True
+        return False
+
     def valid_terminal(self, x):
         if x in self.terminals:
             return True
@@ -78,7 +84,7 @@ class Grammar:
         for i in self.productions[nonterm]:
             self.prod_idx += 1
             s += "(" + str(self.prod_idx) + ") "
-            s = s + i + " | "
+            s = s + str(i) + " | "
         s = s[:-2]
         s += "\n"
         return s

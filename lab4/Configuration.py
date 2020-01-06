@@ -28,8 +28,15 @@ class Configuration:
                 self.working_stack.insert(0, prod[i])
                 i -= 1
 
+    def push_beta2(self, prod):
+        if prod != ["epsilon"]:
+            i = len(prod) - 1
+            while i >= 0:
+                self.working_stack.insert(0, prod[i])
+                i -= 1
+
     def add_pi(self, prod_idx):
-        self.pi += str(prod_idx)
+        self.pi += " " + str(prod_idx)
 
     def get_pi(self):
         return self.pi
